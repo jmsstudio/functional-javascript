@@ -8,3 +8,8 @@ export const handleStatus = res => {
 
   return ret;
 };
+
+export const log = param => {
+  console.log(param);
+  return param;
+};

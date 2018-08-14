@@ -1,7 +1,7 @@
-import { handleStatus } from './utils/promise-helpers.js';
+import { log } from './utils/promise-helpers.js';
+import { NotasService } from './invoice/service.js';
 
 document.getElementById('btnLoad').onclick = () =>
-  fetch('http://localhost:3000/invoices')
-    .then(res => handleStatus(res))
-    .then(invoices => console.log(invoices))
-    .catch(err => console.error(err));
+  NotasService.sumItems('2143')
+    .then(log)
+    .catch(console.error);
