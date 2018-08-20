@@ -12,6 +12,7 @@ export const NotasService = {
   list() {
     return fetch(API).then(handleStatus);
   },
+
   sumItems(code) {
     const filterItems = partialize(filterItemsByCode, code);
     const sumItems = pipe(
