@@ -1,4 +1,4 @@
-import { log } from './utils/promise-helpers.js';
+import { log, promiseTimeout, retry } from './utils/promise-helpers.js';
 import { NotasService } from './invoice/service.js';
 import { takeUntil, debounceTime, partialize, pipe } from './utils/operators.js';
 
@@ -9,7 +9,7 @@ const composedOperations = pipe(
 );
 
 const sumItems = composedOperations(() =>
-  NotasService.sumItems('2143')
+  retry(10, 5000, () => promiseTimeout(200, NotasService.sumItems('2143')))
     .then(log)
     .catch(console.error)
 );
